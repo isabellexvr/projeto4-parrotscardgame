@@ -1,0 +1,77 @@
+body {
+    background-color: #eef9bf;
+}
+
+header {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 56px;
+    font-weight: 700;
+    color: #75B79E;
+    margin-top: 40px;
+    margin-bottom: 47px;
+    display: flex;
+    justify-content: center;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+}
+
+.cartas {
+    width: 920px;
+    flex-wrap: wrap;
+    display: flex;
+}
+
+.carta {
+    width: 117px;
+    height: 146px;
+    border-radius: 5px;
+    border: solid 1px #99CEA8;
+    background-color: #a7e9af;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 34px;
+    margin-bottom: 34px;
+    transition: all 1s;
+}
+.carta img {
+    transition: all 1s;
+}
+
+.virada img {
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+}
+
+.virada {
+    transform: rotateY(180deg);
+}
+
+@media (max-width:614px) {
+    header {
+        text-align: center;
+        width: 85%;
+        font-size: 36px;
+        margin: 0 auto;
+        margin-top: 40px;
+        margin-bottom: 47px;
+    }
+
+    main {
+        flex-direction: column;
+    }
+
+    .cartas {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+    }
+
+    .carta {
+        margin-right: 0;
+    }
+}
