@@ -39,3 +39,5 @@ function adicionarCartas() {
 function virar(divCarta) {
     divCarta.classList.add('virada')
 }
+
+//ewfniekn
