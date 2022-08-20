@@ -35,19 +35,30 @@ main {
     align-items: center;
     margin-right: 34px;
     margin-bottom: 34px;
-    transition: all 1s;
-}
-.carta img {
-    transition: all 1s;
+    position: relative;
 }
 
-.virada img {
-    backface-visibility: hidden;
-    transform: rotateY(180deg);
+.carta .costas img {
+    opacity: 0;
 }
 
-.virada {
-    transform: rotateY(180deg);
+.carta .frente img {
+    position: absolute;
+    left: 8px;
+    top: 25px;
+
+}
+
+.carta.virada .costas img {
+    position: absolute;
+    top: 34px;
+    left: 19px;
+    width: 80px;
+    opacity: 1;
+}
+
+.carta.virada .frente img {
+    opacity: 0;
 }
 
 @media (max-width:614px) {
