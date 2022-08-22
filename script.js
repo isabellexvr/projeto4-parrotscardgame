@@ -75,32 +75,43 @@ function embaralhador() {
 
 let primeiraClicada;
 let segundaClicada;
+const cartasClicadas = []
 
 function virar(divCarta) {
+    const cartaClicada = divCarta
+    cartasClicadas.push(cartaClicada)
+
+    console.log(cartasClicadas)
+
     const gif = divCarta.children[1].children[0].src;
     divCarta.classList.add('virada')
 
     contarJogadas++
 
+    //quando o numero de jogadas for ímpar, coloca na variável primeiroClicada; quando for par, vai pra segundaClicada
     if (contarJogadas % 2 === 1) {
         primeiraClicada = gif.toString()
     } else if (contarJogadas % 2 === 0) {
         segundaClicada = gif.toString()
     }
-
+    //se houver a primeira carta clicada, só será desvirada quando clicar no próximo clique
     if (primeiraClicada !== undefined && segundaClicada === undefined) {
         permanecerVirada()
     }
 
-
+    //numero de jogadas par para que haja comparação entre duas cartas por vez
     if (contarJogadas % 2 === 0) {
+        //se forem diferentes
+        cartaInativa()
+        setTimeout(reativarCarta, 400)
 
         if (primeiraClicada !== undefined && segundaClicada !== undefined) {
             if (primeiraClicada !== segundaClicada) {
-                setTimeout(virarCartas, 2000)
+                setTimeout(virarCartas, 1000)
+                //impedir de clicar noutras durante esse tempo; adicionar classe .inativa durante 800ms
             }
         }
-
+        //se forem iguais
         if (primeiraClicada !== undefined && segundaClicada !== undefined) {
             if (primeiraClicada === segundaClicada) {
                 permanecerVirada()
@@ -109,25 +120,50 @@ function virar(divCarta) {
 
     }
 
+    //problema: quando clico em 2 iguais, elas permanecem viradas, porem, quando clicadas noutras 2 diferentes, todas viram de volta
 
-    console.log(primeiraClicada == segundaClicada)
-    console.log(primeiraClicada)
-    console.log(segundaClicada)
-    console.log(contarJogadas)
-
+    if (numeroDeCartas === contarJogadas) {
+        permanecerVirada()
+    }
+    //fim: quando todas as cartas tiverem .virada - aparecer alert(`Você ganhou em ${contarJogadas} jogadas!`) - fazer sumirem as cartas
+    return primeiraClicada, segundaClicada;
 
 }
 
+
+
 function virarCartas() {
-    const cartasCLicadas = document.querySelectorAll('.virada')
-    for (i = 0; i < cartasCLicadas.length; i++) {
-        cartasCLicadas[i].classList.remove('virada')
+
+    if (primeiraClicada !== segundaClicada) {
+        cartasClicadas[cartasClicadas.length - 1].classList.remove('virada')
+        cartasClicadas[cartasClicadas.length - 2].classList.remove('virada')
+
+        /*
+        for (i = 0; i < cartasCLicadas.length; i++) {
+            cartasCLicadas[i].classList.remove('virada')
+        }
+        */
     }
+
 }
 
 function permanecerVirada() {
-    const cartasCLicadas = document.querySelectorAll('.virada')
-    for (i = 0; i < cartasCLicadas.length; i++) {
-        cartasCLicadas[i].classList.add('virada')
+    const todasCartasViradas = document.querySelectorAll('.virada')
+    for (i = 0; i < todasCartasViradas.length; i++) {
+        todasCartasViradas[i].classList.add('virada')
+    }
+}
+
+function cartaInativa() {
+    const cartasEmJogo = document.querySelectorAll('carta')
+    for (i = 0; i < cartasEmJogo.length; i++) {
+        cartasEmJogo[i].classList.add('inativa')
+    }
+}
+
+function reativarCarta() {
+    const cartasInativas = document.querySelectorAll('inativa');
+    for(i=0; i < cartasInativas.length; i++) {
+        cartasInativas[i].classList.remote('inativa')
     }
 }
