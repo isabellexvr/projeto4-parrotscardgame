@@ -102,12 +102,13 @@ function virar(divCarta) {
     //numero de jogadas par para que haja comparação entre duas cartas por vez
     if (contarJogadas % 2 === 0) {
         //se forem diferentes
-        cartaInativa()
-        setTimeout(reativarCarta, 400)
+
 
         if (primeiraClicada !== undefined && segundaClicada !== undefined) {
             if (primeiraClicada !== segundaClicada) {
                 setTimeout(virarCartas, 1000)
+                cartaInativa()
+                setTimeout(reativarCarta, 1000)
                 //impedir de clicar noutras durante esse tempo; adicionar classe .inativa durante 800ms
             }
         }
@@ -126,6 +127,14 @@ function virar(divCarta) {
         permanecerVirada()
     }
     //fim: quando todas as cartas tiverem .virada - aparecer alert(`Você ganhou em ${contarJogadas} jogadas!`) - fazer sumirem as cartas
+    const cartasViradas = document.querySelectorAll('.virada');
+    for (i = 0; i < cartasViradas; i++) {
+        if (numeroDeCartas === cartasViradas.length) {
+            alert("Você ganhou em "+contarJogadas+"jogadas!")
+        }
+    }
+
+
     return primeiraClicada, segundaClicada;
 
 }
@@ -155,15 +164,15 @@ function permanecerVirada() {
 }
 
 function cartaInativa() {
-    const cartasEmJogo = document.querySelectorAll('carta')
+    const cartasEmJogo = document.querySelectorAll('.carta')
     for (i = 0; i < cartasEmJogo.length; i++) {
         cartasEmJogo[i].classList.add('inativa')
     }
 }
 
 function reativarCarta() {
-    const cartasInativas = document.querySelectorAll('inativa');
-    for(i=0; i < cartasInativas.length; i++) {
-        cartasInativas[i].classList.remote('inativa')
+    const cartasInativas = document.querySelectorAll('.inativa');
+    for (i = 0; i < cartasInativas.length; i++) {
+        cartasInativas[i].classList.remove('inativa')
     }
 }
