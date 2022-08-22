@@ -106,8 +106,8 @@ function virar(divCarta) {
 
         if (primeiraClicada !== undefined && segundaClicada !== undefined) {
             if (primeiraClicada !== segundaClicada) {
-                setTimeout(virarCartas, 1000)
                 cartaInativa()
+                setTimeout(virarCartas, 1000)
                 setTimeout(reativarCarta, 1000)
                 //impedir de clicar noutras durante esse tempo; adicionar classe .inativa durante 800ms
             }
@@ -127,13 +127,8 @@ function virar(divCarta) {
         permanecerVirada()
     }
     //fim: quando todas as cartas tiverem .virada - aparecer alert(`Você ganhou em ${contarJogadas} jogadas!`) - fazer sumirem as cartas
-    const cartasViradas = document.querySelectorAll('.virada');
-    for (i = 0; i < cartasViradas; i++) {
-        if (numeroDeCartas === cartasViradas.length) {
-            alert("Você ganhou em "+contarJogadas+"jogadas!")
-        }
-    }
 
+    fimDeJogo()
 
     return primeiraClicada, segundaClicada;
 
@@ -174,5 +169,13 @@ function reativarCarta() {
     const cartasInativas = document.querySelectorAll('.inativa');
     for (i = 0; i < cartasInativas.length; i++) {
         cartasInativas[i].classList.remove('inativa')
+    }
+}
+
+function fimDeJogo() {
+    const cartasViradas = document.querySelectorAll('.virada');
+
+    if (numeroDeCartas === cartasViradas.length) {
+        alert("Você ganhou em " + contarJogadas + " jogadas!")
     }
 }
