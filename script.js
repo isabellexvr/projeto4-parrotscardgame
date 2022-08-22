@@ -142,11 +142,6 @@ function virarCartas() {
         cartasClicadas[cartasClicadas.length - 1].classList.remove('virada')
         cartasClicadas[cartasClicadas.length - 2].classList.remove('virada')
 
-        /*
-        for (i = 0; i < cartasCLicadas.length; i++) {
-            cartasCLicadas[i].classList.remove('virada')
-        }
-        */
     }
 
 }
@@ -174,11 +169,16 @@ function reativarCarta() {
 
 function fimDeJogo() {
     const cartasViradas = document.querySelectorAll('.virada');
-    const divCartas = document.querySelector('.cartas')
+    const divCartas = document.querySelector('.cartas');
+
 
     if (numeroDeCartas === cartasViradas.length) {
         alert("Você ganhou em " + contarJogadas + " jogadas!");
         divCartas.classList.add('esconder')
+        const perguntaReload = prompt("Você gostaria de reiniciar a partida? (responder apenas com SIM ou NÃO)");
+        if (perguntaReload === "sim") {
+            location.reload()
+        }
     }
 
 }
