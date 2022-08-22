@@ -65,6 +65,10 @@ main {
     pointer-events: none;
 }
 
+.esconder {
+    display: none;
+}
+
 @media (max-width:614px) {
     header {
         text-align: center;

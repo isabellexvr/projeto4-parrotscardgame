@@ -174,8 +174,11 @@ function reativarCarta() {
 
 function fimDeJogo() {
     const cartasViradas = document.querySelectorAll('.virada');
+    const divCartas = document.querySelector('.cartas')
 
     if (numeroDeCartas === cartasViradas.length) {
-        alert("Você ganhou em " + contarJogadas + " jogadas!")
+        alert("Você ganhou em " + contarJogadas + " jogadas!");
+        divCartas.classList.add('esconder')
     }
+
 }
